@@ -796,6 +796,38 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
         left: auto;
     }
 }
+/* زر تسجيل الدخول في الموبايل - شكل منفصل وجميل */
+.mobile-login-btn {
+    background: rgba(0,230,138,0.12);
+    color: var(--ac);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,230,138,0.25);
+}
+
+.mobile-login-btn:hover {
+    background: rgba(0,230,138,0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,230,138,0.2);
+}
+
+/* في الوضع الفاتح */
+body.light-mode .mobile-login-btn {
+    background: rgba(0,168,107,0.1);
+    border-color: rgba(0,168,107,0.3);
+}
+
+body.light-mode .mobile-login-btn:hover {
+    background: rgba(0,168,107,0.18);
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -855,10 +887,15 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
   <div style="display:flex;align-items:center;gap:8px">
     <!-- Controls للموبايل فقط (زر الغات + زرار اللغة) -->
     <!-- Controls للموبايل فقط -->
-<div class="hdr-controls" id="mobileControls" style="display:flex; align-items:center; gap:10px; position:relative;">
+<!-- Controls للموبايل فقط -->
+<div class="hdr-controls" id="mobileControls" style="display:flex; align-items:center; gap:8px; position:relative;">
+    
+    <!-- زر الثيم -->
     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" title="تبديل المظهر">
         <i class="fas fa-moon"></i>
     </button>
+    
+    <!-- زرار اللغة -->
     <div class="lang-select-wrap">
         <select onchange="changeLang(this.value)" id="langSelectMobile">
             <option value="ar">AR</option>
@@ -867,12 +904,13 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
         </select>
     </div>
 
-    <!-- زر تسجيل الدخول في الموبايل -->
-    <a href="login.html" id="loginLinkMobile" class="login-btn" style="font-size:15px; padding:9px 14px;">
-        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    <!-- زر تسجيل الدخول - شكل منفصل وأنيق في الموبايل -->
+    <a href="login.html" id="loginLinkMobile" class="mobile-login-btn">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>تسجيل الدخول</span>
     </a>
 
-    <!-- حساب المستخدم بعد الدخول (موبايل) -->
+    <!-- حساب المستخدم بعد الدخول -->
     <div id="userProfileMobile" class="user-account" style="display:none; width:42px; height:42px;" onclick="toggleUserMenu()">
         <img id="userAvatarMobile" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
     </div>
@@ -1702,38 +1740,62 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 // التحقق من حالة تسجيل الدخول
 // التحقق من حالة تسجيل الدخول
+// التحقق من حالة تسجيل الدخول
 function checkLoginStatus() {
     const user = localStorage.getItem("user");
+    
     if (user) {
         const userData = JSON.parse(user);
         
-        // إخفاء أزرار تسجيل الدخول (ديسكتوب + موبايل)
+        // إخفاء أزرار تسجيل الدخول
         const loginDesktop = document.getElementById("loginLink");
-        const loginMobile = document.getElementById("loginLinkMobile");
+        const loginMobile  = document.getElementById("loginLinkMobile");
+        
         if (loginDesktop) loginDesktop.style.display = "none";
-        if (loginMobile) loginMobile.style.display = "none";
-        
-        // إظهار صورة المستخدم (ديسكتوب + موبايل)
-        const avatar = document.getElementById("userAvatar");
-        const avatarMobile = document.getElementById("userAvatarMobile");
-        
-        if (avatar && userData.picture) {
-            avatar.src = userData.picture;
-        } else if (avatar) {
-            avatar.src = "https://via.placeholder.com/150?text=" + encodeURIComponent(userData.name ? userData.name[0] : "U");
-        }
-        
-        if (avatarMobile && userData.picture) {
-            avatarMobile.src = userData.picture;
-        } else if (avatarMobile) {
-            avatarMobile.src = "https://via.placeholder.com/150?text=" + encodeURIComponent(userData.name ? userData.name[0] : "U");
-        }
-        
+        if (loginMobile)  loginMobile.style.display = "none";
+
+        // إظهار صورة المستخدم + تحديث الصورة
+        const avatarDesktop = document.getElementById("userAvatar");
+        const avatarMobile  = document.getElementById("userAvatarMobile");
+
         const profileDesktop = document.getElementById("userProfile");
-        const profileMobile = document.getElementById("userProfileMobile");
-        
+        const profileMobile  = document.getElementById("userProfileMobile");
+
+        // تحديث الصورة
+        if (avatarDesktop) {
+            if (userData.picture) {
+                avatarDesktop.src = userData.picture;
+            } else {
+                // Placeholder بأول حرف من الاسم
+                const initial = (userData.name && userData.name.length > 0) 
+                              ? userData.name[0].toUpperCase() 
+                              : "U";
+                avatarDesktop.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
+            }
+        }
+
+        if (avatarMobile) {
+            if (userData.picture) {
+                avatarMobile.src = userData.picture;
+            } else {
+                const initial = (userData.name && userData.name.length > 0) 
+                              ? userData.name[0].toUpperCase() 
+                              : "U";
+                avatarMobile.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
+            }
+        }
+
+        // إظهار البروفايل
         if (profileDesktop) profileDesktop.style.display = "block";
-        if (profileMobile) profileMobile.style.display = "block";
+        if (profileMobile)  profileMobile.style.display = "block";
+
+    } else {
+        // لو مفيش مستخدم مسجل → نأكد إن أزرار الدخول ظاهرة
+        const loginDesktop = document.getElementById("loginLink");
+        const loginMobile  = document.getElementById("loginLinkMobile");
+        
+        if (loginDesktop) loginDesktop.style.display = "flex";
+        if (loginMobile)  loginMobile.style.display = "flex";
     }
 }
 
@@ -1763,11 +1825,11 @@ document.addEventListener("click", function(e) {
     }
 });
 
-// تشغيل الدالة عند تحميل الصفحة
+/* ── INIT ── */
 window.addEventListener('DOMContentLoaded', () => {
     applyTheme();
     applyLang();
-    checkLoginStatus();   // ← مهم جدًا
+    checkLoginStatus();     // مهم - بيظهر حالة تسجيل الدخول
 });
 </script>
 </body>
