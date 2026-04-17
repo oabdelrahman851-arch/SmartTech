@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="WhatsApp Image 2026-04-15 at 10.50.53 AM.jpeg">
+<link rel="icon" type="image/png" href="WhatsApp_Image_2026-04-15_at_2.01.42_PM-removebg-preview.png">
 <title>Smart Tech — حلول تقنية متقدمة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -29,15 +29,45 @@
    LIGHT MODE
 ══════════════════════════════════════ */
 body.light-mode{
-  --bg:#f2f7f4;
-  --s1:#ffffff;
-  --s2:#e8f2ed;
-  --ac:#009960;
-  --ac2:#007a4d;
-  --tx:#0e2118;
-  --mt:#3d7060;
-  --br:rgba(0,0,0,.09);
+  --bg: #f8f9fa;          /* أبيض رمادي خفيف بدل الأخضر */
+  --s1: #ffffff;           /* كارت أبيض نظيف */
+  --s2: #f0f4f2;           /* رمادي فاتح خفيف */
+  --ac: #00a86b;           /* أخضر واضح ومشرق */
+  --ac2: #007a4d;          /* أخضر داكن للهوفر */
+  --tx: #111827;           /* أسود طبيعي للنصوص */
+  --mt: #4b5563;           /* رمادي متوسط للنصوص الثانوية */
+  --br: rgba(0,0,0,.10);   /* حدود رمادية خفيفة */
   --shadow-card: 0 4px 18px rgba(0,0,0,.08);
+}
+body.light-mode .vis {
+  background: linear-gradient(135deg, #e8f5ee, #f0faf5);
+  border-color: rgba(0, 120, 80, .18);
+}
+
+body.light-mode .vis-in {
+  background: radial-gradient(circle at 50% 50%, rgba(0,168,107,.12), transparent 70%);
+}
+
+body.light-mode .vr {
+  border-color: rgba(0, 120, 80, .18);
+}
+
+body.light-mode .vr:nth-child(2) {
+  border-color: rgba(0, 100, 60, .12);
+}
+
+body.light-mode .vr:nth-child(3) {
+  border-color: rgba(0, 120, 80, .08);
+}
+
+body.light-mode .vis-icon {
+  filter: drop-shadow(0 0 20px rgba(0, 150, 80, .35));
+}
+
+body.light-mode .vis-badge {
+  background: #ffffff;
+  border-color: rgba(0, 120, 80, .25);
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -256,11 +286,7 @@ body.light-mode .hero h1 .gr{background:linear-gradient(135deg,var(--ac2),#00b36
 body.light-mode .stat .n{background:linear-gradient(135deg,var(--ac2),var(--tx));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .stat .l{font-size:12.5px;color:var(--mt);margin-top:2px}
 .scroll-cue{
-  position:absolute;bottom:22px;
-  left:0;right:0;
-  margin:0 auto;
-  width:fit-content;
-  transform:none;
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:5px;
   color:var(--mt);font-size:11px;animation:bob 2.2s ease infinite;z-index:3
 }
@@ -566,9 +592,37 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
 /* ─────────────────────────────
    RESPONSIVE — Tablet ≤900px
 ───────────────────────────── */
-/* ====================== BASE STYLES (Mobile-First) ====================== */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .about-wr{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .pr-grid{grid-template-columns:1fr 1fr;gap:26px}
+  .pr-grid::before{display:none}
+  .tst-grid{grid-template-columns:1fr}
+  .ct-wr{grid-template-columns:1fr}
+  .fr{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
 
-/* Logo */
+@media(max-width:600px){
+  .srv-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .pr-grid{grid-template-columns:1fr 1fr}
+  .hero-btns{flex-direction:column;width:100%;max-width:280px}
+  .btn{width:100%;justify-content:center}
+  .stats{gap:14px}
+  .ft-top{grid-template-columns:1fr}
+  .proj-hd{flex-direction:column;align-items:flex-start}
+  .feats{grid-template-columns:1fr}
+}
+
+@media(max-width:380px){
+  header{padding:0 14px}
+  .sec{padding:44px 14px}
+  .pr-grid{grid-template-columns:1fr}
+}
 .logo {
   display: flex;
   align-items: center;
@@ -580,33 +634,50 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
   height: 50px;
   object-fit: contain;
 }
-
-/* WhatsApp Button */
 .whatsapp-btn {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 30px;
+  right: 25px;
   background: #25D366;
   color: white;
-  font-size: 26px;
-  width: 52px;
-  height: 52px;
+  font-size: 18px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 0 8px rgba(0,0,0,0.25);
   z-index: 9999;
-  transition: all 0.3s ease;
+  animation: whatsapp-pulse 2s ease-in-out infinite;
 }
 
 .whatsapp-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  transform: scale(1.12);
+  animation: none;
+}
+@media (max-width: 600px) {
+  .whatsapp-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 16px;
+  }
 }
 
-/* Mobile Controls */
+
+@keyframes whatsapp-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); transform: scale(1); }
+  50%  { box-shadow: 0 0 0 14px rgba(37,211,102,0); transform: scale(1.08); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); transform: scale(1); }
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+/* ====================== MOBILE CONTROLS ====================== */
 #mobileControls {
   display: flex;
   align-items: center;
@@ -614,147 +685,29 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
 }
 
 /* إخفاء الـ controls القديمة من الـ nav-links على الموبايل */
-.nav-links .hdr-controls {
-  display: none !important;
-}
-
-/* ====================== RESPONSIVE GRID & LAYOUT ====================== */
-
-/* الـ Nav الافتراضي على الموبايل */
-.nav-links {
-  display: none;
-}
-.hamburger {
-  display: flex;
-}
-
-/* Grids - Mobile First */
-.srv-grid,
-.proj-grid,
-.pr-grid,
-.tst-grid,
-.ct-wr,
-.fr,
-.feats,
-.about-wr {
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.pr-grid {
-  gap: 18px;
-}
-
-/* من 600px فأكتر (Tablet / Small Desktop) */
-@media (min-width: 601px) {
-  .srv-grid,
-  .proj-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-
-  .pr-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-  }
-
-  .hero-btns {
-    flex-direction: row;
-    width: auto;
-    max-width: none;
-  }
-
-  .btn {
-    width: auto;
-    justify-content: center;
-  }
-
-  .stats {
-    gap: 20px;
-  }
-
-  .proj-hd {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-/* من 901px فأكتر (Desktop) */
-@media (min-width: 901px) {
-  .nav-links {
-    display: flex;           /* أو inline-flex حسب تصميمك */
-  }
-  .hamburger {
-    display: none;
-  }
-
-  /* إظهار الـ controls القديمة في الـ nav على الديسكتوب */
+@media (max-width: 900px) {
   .nav-links .hdr-controls {
-    display: flex !important;
-  }
-
-  /* إخفاء mobileControls على الديسكتوب */
-  #mobileControls {
     display: none !important;
   }
 
-  .srv-grid,
-  .proj-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* تحسين حجم الزراير على الموبايل */
+  #mobileControls .theme-toggle {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 
-  .pr-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-  }
-
-  .about-wr,
-  .tst-grid,
-  .ct-wr,
-  .fr,
-  .feats {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .ft-top {
-    grid-template-columns: 1fr 1fr;
+  #mobileControls .lang-select-wrap select {
+    padding: 9px 12px;
+    font-size: 14.5px;
+    min-width: 58px;
   }
 }
 
-/* شاشات كبيرة جداً (اختياري - لو عايز) */
-@media (min-width: 1200px) {
-  .pr-grid {
-    gap: 32px;
-  }
-}
-
-/* ====================== صغير جداً (تحسينات إضافية) ====================== */
-@media (max-width: 480px) {
-  header {
-    padding: 0 14px;
-  }
-
-  .sec {
-    padding: 40px 14px;
-  }
-
-  .pr-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  /* تحسين الـ WhatsApp على الموبايل الصغير */
-  .whatsapp-btn {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
-    bottom: 14px;
-    right: 14px;
-  }
-}
-
-@media (max-width: 380px) {
-  .sec {
-    padding: 36px 12px;
+/* على الديسكتوب نخفي الـ mobileControls */
+@media (min-width: 901px) {
+  #mobileControls {
+    display: none !important;
   }
 }
 </style>
@@ -770,7 +723,7 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
 <!-- ═══ HEADER ═══ -->
 <header id="hdr">
   <a href="#" class="logo">
-  <img src="WhatsApp Image 2026-04-15 at 10.50.53 AM.jpeg" class="logo-img" alt="Smart Tech Logo">
+  <img src="WhatsApp_Image_2026-04-15_at_2.01.42_PM-removebg-preview.png" class="logo-img" alt="Smart Tech Logo">
   <span dir="ltr">Smart Tech</span>
   </a>
 
@@ -1219,49 +1172,38 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="ft">
-    <div class="ft-top">
-      <div class="ft-brand">
-        <a href="#" class="logo">
-          <div class="logo-ic">
-            <svg class="logo-svg" viewBox="0 0 40 40" ...>
-              <img src="WhatsApp Image 2026-04-15 at 10.50.53 AM.jpeg" class="logo-img" alt="Smart Tech Logo">
-            </svg>
-          </div>
-          
-          <span dir="ltr">Smart Tech</span>
-        </a>
-        <p data-key="ft_desc">نبني منتجات رقمية تحل مشكلات حقيقية وتصنع أثراً دائماً في السوق.</p>
-        <div class="socials">
-          <a href="https://www.facebook.com/share/1L4JyAWAsE/" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/smart.tech_offecial?utm_source=qr&igsh=MWNtYXhjMmNhdGFhcQ==" target="_blank" class="soc"><i class="fab fa-instagram"></i></a>
-          <a href="https://vt.tiktok.com/ZSHgrySa7/" target="_blank" class="soc"><i class="fab fa-tiktok"></i></a>
-        </div>
-      </div>
-      <div class="fc"><h4 data-key="ft1h">الخدمات</h4>
-        <a href="#" data-key="sv1h">تطوير الويب</a>
-        <a href="#" data-key="sv2h">تطبيقات الجوال</a>
-        <a href="#" data-key="sv3h">الذكاء الاصطناعي</a>
-        <a href="#" data-key="sv6h">الأمن السيبراني</a>
-      </div>
-      <div class="fc"><h4 data-key="ft2h">الشركة</h4>
-        <a href="#about" data-key="n2">من نحن</a>
-        <a href="#projects" data-key="n3">أعمالنا</a>
-        <a href="#" data-key="blog">المدونة</a>
-        <a href="#" data-key="jobs">الوظائف</a>
-      </div>
-      <div class="fc"><h4 data-key="ft3h">الدعم</h4>
-        <a href="#contact" data-key="ct_lbl">تواصل معنا</a>
-        <a href="#faq" data-key="fq_lbl">الأسئلة الشائعة</a>
-        <a href="#" data-key="priv">سياسة الخصوصية</a>
-        <a href="#" data-key="terms">الشروط والأحكام</a>
-      </div>
-    </div>
-    <div class="ft-bot">
-      <p data-key="ft_copy">© 2026 Smart Tech. جميع الحقوق محفوظة.</p>
-      <p style="color:var(--ac);font-weight:700" data-key="ft_made">صُنع بجهد الفريق — في الإسكندرية</p>
+  <div class="ft-top">
+  <div class="ft-brand">
+    <a href="#" class="logo">
+      <img src="WhatsApp_Image_2026-04-15_at_2.01.42_PM-removebg-preview.png" class="logo-img" alt="Smart Tech Logo">
+      <span dir="ltr">Smart Tech</span>
+    </a>
+    <p data-key="ft_desc">نبني منتجات رقمية تحل مشكلات حقيقية وتصنع أثراً دائماً في السوق.</p>
+    <div class="socials">
+      <a href="https://www.facebook.com/share/1L4JyAWAsE/" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/smart.tech_offecial?utm_source=qr&igsh=MWNtYXhjMmNhdGFhcQ==" target="_blank" class="soc"><i class="fab fa-instagram"></i></a>
+      <a href="https://vt.tiktok.com/ZSHgrySa7/" target="_blank" class="soc"><i class="fab fa-tiktok"></i></a>
     </div>
   </div>
+  <div class="fc"><h4 data-key="ft1h">الخدمات</h4>
+    <a href="#" data-key="sv1h">تطوير الويب</a>
+    <a href="#" data-key="sv2h">تطبيقات الجوال</a>
+    <a href="#" data-key="sv3h">الذكاء الاصطناعي</a>
+    <a href="#" data-key="sv6h">الأمن السيبراني</a>
+  </div>
+  <div class="fc"><h4 data-key="ft2h">الشركة</h4>
+    <a href="#about" data-key="n2">من نحن</a>
+    <a href="#projects" data-key="n3">أعمالنا</a>
+    <a href="#" data-key="blog">المدونة</a>
+    <a href="#" data-key="jobs">الوظائف</a>
+  </div>
+  <div class="fc"><h4 data-key="ft3h">الدعم</h4>
+    <a href="#contact" data-key="ct_lbl">تواصل معنا</a>
+    <a href="#faq" data-key="fq_lbl">الأسئلة الشائعة</a>
+    <a href="#" data-key="priv">سياسة الخصوصية</a>
+    <a href="#" data-key="terms">الشروط والأحكام</a>
+  </div>
+</div>
 </footer>
 
 <div class="toast" id="toast"></div>
