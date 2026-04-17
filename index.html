@@ -796,7 +796,194 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
         left: auto;
     }
 }
+/* زر تسجيل الدخول في الموبايل - شكل منفصل وجميل */
+.mobile-login-btn {
+    background: rgba(0,230,138,0.12);
+    color: var(--ac);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,230,138,0.25);
+}
 
+.mobile-login-btn:hover {
+    background: rgba(0,230,138,0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,230,138,0.2);
+}
+
+/* في الوضع الفاتح */
+body.light-mode .mobile-login-btn {
+    background: rgba(0,168,107,0.1);
+    border-color: rgba(0,168,107,0.3);
+}
+
+body.light-mode .mobile-login-btn:hover {
+    background: rgba(0,168,107,0.18);
+}
+.mobile-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,230,138,0.12);
+    color: var(--ac);
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 8px 0;
+    text-decoration: none;
+    border: 1px solid rgba(0,230,138,0.3);
+}
+
+.mobile-login-btn:hover {
+    background: rgba(0,230,138,0.25);
+}
+/* ═══ MOBILE LOGIN FIX ═══ */
+@media (max-width: 900px) {
+    /* تنسيق قسم المستخدم في الموبايل */
+    #userSectionMobile {
+        border-top: 1px solid var(--br);
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+    
+    /* زر تسجيل الدخول في القائمة */
+    .mobile-nav .mobile-login-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 16px;
+        margin: 10px 0;
+        font-size: 15px;
+    }
+    
+    /* صورة المستخدم في القائمة */
+    #userSectionMobile .user-account {
+        width: 45px;
+        height: 45px;
+        border-width: 2px;
+    }
+    
+    /* زر تسجيل الخروج */
+    #userSectionMobile a[onclick*="logout"] {
+        color: #ff6b6b !important;
+        font-weight: 700;
+        padding: 14px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+    
+    #userSectionMobile a[onclick*="logout"]:hover {
+        background: rgba(255, 77, 77, 0.1);
+    }
+}
+/* ═══════════════════════════════════════
+   MOBILE NAV - LOGIN & USER SECTION
+═══════════════════════════════════════ */
+
+/* خط فاصل */
+.mobile-nav-divider {
+    height: 1px;
+    background: var(--br);
+    margin: 12px 0;
+}
+
+/* زر تسجيل الدخول في القائمة */
+.mobile-nav .mobile-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--ac2), var(--ac));
+    color: #fff !important;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin: 8px 0;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav .mobile-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 230, 138, 0.3);
+}
+
+/* قسم المستخدم */
+.user-section-mobile {
+    display: none;
+    padding: 8px 0;
+}
+
+.user-info-mobile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    background: var(--s2);
+    border-radius: 14px;
+    margin-bottom: 10px;
+}
+
+.user-avatar-mobile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--ac);
+    flex-shrink: 0;
+}
+
+.user-avatar-mobile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details-mobile {
+    flex: 1;
+}
+
+.user-name-mobile {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--tx);
+    margin-bottom: 2px;
+}
+
+.user-status-mobile {
+    font-size: 12px;
+    color: var(--ac);
+    font-weight: 600;
+}
+
+/* زر تسجيل الخروج */
+.logout-btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 77, 77, 0.1);
+    border: 1px solid rgba(255, 77, 77, 0.3);
+    color: #ff6b6b !important;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn-mobile:hover {
+    background: rgba(255, 77, 77, 0.2);
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -821,26 +1008,43 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
     <a href="#faq"      data-key="n5">الأسئلة</a>
 
         <!-- Controls للموبايل فقط (ثيم + لغة فقط) -->
-<div class="hdr-controls" style="display:flex; align-items:center; gap:10px; position:relative;">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
+<div class="hdr-controls" id="mobileControls">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" title="تبديل المظهر">
         <i class="fas fa-moon"></i>
     </button>
     <div class="lang-select-wrap">
-        <select onchange="changeLang(this.value)" id="langSelect">
+        <select onchange="changeLang(this.value)" id="langSelectMobile">
             <option value="ar">AR</option>
             <option value="en">EN</option>
             <option value="fr">FR</option>
         </select>
     </div>
-
-    
-
-    
-    
 </div>
 
-    
-    
+    <!-- زر تسجيل الدخول في الديسكتوب -->
+    <a href="login.html" id="loginLinkNav" onclick="closeMenu()" class="mobile-login-btn">
+      <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    </a>
+
+    <!-- حساب المستخدم بعد الدخول (ديسكتوب) -->
+    <div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
+        <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <!-- قائمة تسجيل الخروج -->
+    <div id="userMenu" class="user-menu">
+        <a href="#" onclick="logout(); return false;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </a>
+    </div>
+</div>
+
+    <!-- قائمة المستخدم -->
+    <div id="userMenu" class="user-menu">
+        <a href="#" onclick="logout(); return false;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </a>
+    </div>
 </div>
 
     <a href="#contact" class="nav-cta" data-key="ncta">ابدأ مشروعك</a>
@@ -865,6 +1069,13 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
             <option value="fr">FR</option>
         </select>
     </div>
+
+    
+</div>
+    <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 
@@ -874,12 +1085,34 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
     <a href="#about" data-key="n2" onclick="closeMenu()">عنّا</a>
     <a href="#projects" data-key="n3" onclick="closeMenu()">الأعمال</a>
     <a href="#faq" data-key="n5" onclick="closeMenu()">الأسئلة الشائعة</a>
-
     
+    <div class="mobile-nav-divider"></div>
+    
+    <!-- زر تسجيل الدخول (يظهر لما يكون مش مسجل) -->
+    <a href="login.html" id="loginLinkMobile" onclick="closeMenu()" class="mobile-login-btn">
+        <i class="fas fa-sign-in-alt"></i> 
+        <span data-key="login_btn">تسجيل الدخول</span>
+    </a>
+
+    <!-- قسم المستخدم (يظهر بعد تسجيل الدخول) -->
+    <div id="userSectionMobile" class="user-section-mobile">
+        <div class="user-info-mobile">
+            <div class="user-avatar-mobile">
+                <img id="userAvatarMobile" src="" alt="User">
+            </div>
+            <div class="user-details-mobile">
+                <div id="userNameMobile" class="user-name-mobile"></div>
+                <div class="user-status-mobile" data-key="logged_in">مسجل الدخول</div>
+            </div>
+        </div>
+        <a href="#" onclick="logout(); closeMenu(); return false;" class="logout-btn-mobile">
+            <i class="fas fa-sign-out-alt"></i> 
+            <span data-key="logout_btn">تسجيل الخروج</span>
+        </a>
+    </div>
 
     <a href="#contact" class="m-cta" data-key="ncta" onclick="closeMenu()">ابدأ مشروعك</a>
 </nav>
-
 <!-- ═══ HERO ═══ -->
 <div class="hero">
   <!-- Building Background SVG (clean, no pixelation) -->
@@ -1683,12 +1916,93 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
   if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
 }));
 
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', () => {
+  applyTheme();
+  applyLang();
+});
 
+// التحقق من حالة تسجيل الدخول
+function checkLoginStatus() {
+    const user = localStorage.getItem("user");
+    
+    // عناصر الديسكتوب
+    const loginDesktop = document.getElementById("loginLink");
+    const userProfileDesktop = document.getElementById("userProfile");
+    
+    // عناصر الموبايل (جوه الـ hamburger menu)
+    const loginMobile = document.getElementById("loginLinkMobile");
+    const userSectionMobile = document.getElementById("userSectionMobile");
 
+    if (user) {
+        const userData = JSON.parse(user);
+        const initial = userData.name ? userData.name[0].toUpperCase() : "U";
+        const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name || 'User')}&background=00e68a&color=fff&size=150`;
 
+        // === الديسكتوب ===
+        if (loginDesktop) loginDesktop.style.display = "none";
+        if (userProfileDesktop) userProfileDesktop.style.display = "block";
 
+        // === الموبايل ===
+        if (loginMobile) loginMobile.style.display = "none";
+        if (userSectionMobile) userSectionMobile.style.display = "block";
 
+        // تحديث الصور والأسماء
+        const avatarDesktop = document.getElementById("userAvatar");
+        const avatarMobile = document.getElementById("userAvatarMobile");
+        const nameMobile = document.getElementById("userNameMobile");
 
+        if (avatarDesktop) {
+            avatarDesktop.src = userData.picture || defaultAvatar;
+        }
+        if (avatarMobile) {
+            avatarMobile.src = userData.picture || defaultAvatar;
+        }
+        if (nameMobile) {
+            nameMobile.textContent = userData.name || "مستخدم";
+        }
+
+    } else {
+        // مش مسجل دخول
+        if (loginDesktop) loginDesktop.style.display = "flex";
+        if (userProfileDesktop) userProfileDesktop.style.display = "none";
+
+        if (loginMobile) loginMobile.style.display = "flex";
+        if (userSectionMobile) userSectionMobile.style.display = "none";
+    }
+}
+// فتح وقفل قائمة المستخدم
+function toggleUserMenu() {
+    const menu = document.getElementById("userMenu");
+    menu.classList.toggle("show");
+}
+
+function toggleUserMenuMobile() {
+    // نفس القائمة للموبايل (نستخدم نفس الـ menu)
+    toggleUserMenu();
+}
+
+// تسجيل الخروج
+function logout() {
+    localStorage.removeItem("user");
+    location.reload(); // إعادة تحميل الصفحة
+}
+
+// إغلاق القائمة لما نضغط بره
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("userMenu");
+    const profile = document.getElementById("userProfile");
+    if (!profile.contains(e.target)) {
+        menu.classList.remove("show");
+    }
+});
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', () => {
+    applyTheme();
+    applyLang();
+    checkLoginStatus();     // مهم - بيظهر حالة تسجيل الدخول
+});
 </script>
 </body>
 </html>
