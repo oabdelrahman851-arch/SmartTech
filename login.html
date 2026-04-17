@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول — Smart Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #07120e;
+            --s1: #0d1f18;
+            --ac: #00e68a;
+            --ac2: #00b36b;
+            --tx: #dff5eb;
+            --mt: #6b9e87;
+            --br: rgba(0,230,138,.15);
+            --shadow: 0 15px 50px rgba(0,0,0,.4);
+        }
+        body.light-mode {
+            --bg: #f8f9fa;
+            --s1: #ffffff;
+            --ac: #00a86b;
+            --ac2: #007a4d;
+            --tx: #111827;
+            --mt: #4b5563;
+            --br: rgba(0,0,0,.12);
+            --shadow: 0 15px 40px rgba(0,0,0,.1);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--tx);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(0,230,138,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0,230,138,0.06) 0%, transparent 50%);
+        }
+
+        .login-card {
+            background: var(--s1);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 28px;
+            padding: 50px 35px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--br);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-circle {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, var(--ac2), var(--ac));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 46px;
+            box-shadow: 0 0 35px rgba(0,230,138,0.5);
+            border: 6px solid var(--s1);
+        }
+
+        h1 {
+            font-size: 29px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--mt);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            transition: all 0.35s ease;
+        }
+
+        .btn-google {
+            background: #ffffff;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-google:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ac2), var(--ac));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,230,138,0.4);
+        }
+
+        .back-link {
+            margin-top: 25px;
+            color: var(--mt);
+            text-decoration: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--ac);
+        }
+
+        /* تأثير خفيف على الكارت */
+        .login-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(0,230,138,0.03), transparent);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="logo-circle">🔐</div>
+        
+        <h1>مرحباً بعودتك!</h1>
+        <p class="subtitle">سجّل دخولك عشان تحفظ تقدمك وتستفيد من كل مميزات Smart Tech</p>
+
+        <button class="btn btn-google" onclick="loginWithGoogle()">
+            <i class="fab fa-google"></i>
+            تسجيل الدخول باستخدام جوجل
+        </button>
+
+        <button class="btn btn-primary" onclick="continueAsGuest()">
+            <i class="fas fa-user"></i>
+            الدخول كضيف
+        </button>
+
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-right"></i>
+            العودة إلى الموقع الرئيسي
+        </a>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBEs2RtRPbfGE8abPg3OCAnWxYdPWaICp0",
+            authDomain: "omar-63bc9.firebaseapp.com",
+            projectId: "omar-63bc9",
+            appId: "1:767403907541:web:8edb75473f0aa2ede4c55c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        function loginWithGoogle() {
+            auth.signInWithPopup(provider)
+                .then(result => {
+                    const userData = {
+                        name: result.user.displayName || "مستخدم Smart Tech",
+                        email: result.user.email,
+                        picture: result.user.photoURL
+                    };
+                    localStorage.setItem("user", JSON.stringify(userData));
+                    alert("✅ تم تسجيل الدخول بنجاح!");
+                    window.location.href = "index.html";
+                })
+                .catch(error => {
+                    alert("❌ حدث خطأ: " + error.message);
+                });
+        }
+
+        function continueAsGuest() {
+            localStorage.setItem("user", JSON.stringify({
+                name: "ضيف",
+                email: "guest@smarttech.eg"
+            }));
+            alert("👤 تم الدخول كضيف بنجاح");
+            window.location.href = "index.html";
+        }
+
+        // تفعيل Light Mode لو المستخدم مختاره في الموقع الرئيسي
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+</html>
