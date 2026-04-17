@@ -661,7 +661,7 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
   .whatsapp-btn {
     width: 48px;
     height: 48px;
-    font-size: 24px;
+    font-size: 24px;  
     bottom: 20px;
     right: 16px;
   }
@@ -710,6 +710,28 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
     display: none !important;
   }
 }
+/* زر تسجيل الدخول - شكل طبيعي ومنسجم */
+.login-btn {
+    color: var(--mt);
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 10px;
+    transition: all .25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    color: var(--ac);
+    background: rgba(0,230,138,0.08);
+}
+
+body.light-mode .login-btn:hover {
+    background: rgba(0,168,107,0.09);
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -733,17 +755,22 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
     <a href="#projects" data-key="n3">الأعمال</a>
     <a href="#faq"      data-key="n5">الأسئلة</a>
 
-    <div class="hdr-controls">
-      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
-        <i class="fas fa-moon"></i>
-      </button>
-      <div class="lang-select-wrap">
-        <select onchange="changeLang(this.value)" id="langSelect">
-          <option value="ar">AR</option>
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-        </select>
-      </div>
+        <div class="hdr-controls" style="display: flex; align-items: center; gap: 10px;">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
+            <i class="fas fa-moon"></i>
+        </button>
+        <div class="lang-select-wrap">
+            <select onchange="changeLang(this.value)" id="langSelect">
+                <option value="ar">AR</option>
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+            </select>
+        </div>
+        
+        <!-- زر تسجيل الدخول - شكل طبيعي وأنيق -->
+        <a href="login.html" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+        </a>
     </div>
 
     <a href="#contact" class="nav-cta" data-key="ncta">ابدأ مشروعك</a>
