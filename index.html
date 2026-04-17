@@ -881,30 +881,14 @@ body.light-mode .mobile-login-btn:hover {
         </select>
     </div>
 
-    <!-- زر تسجيل الدخول في الديسكتوب -->
-    <a href="login.html" id="loginLink" class="login-btn">
-        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-    </a>
+    
 
-    <!-- حساب المستخدم بعد الدخول (ديسكتوب) -->
-    <div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
-        <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
-    </div>
-
-    <!-- قائمة تسجيل الخروج -->
-    <div id="userMenu" class="user-menu">
-        <a href="#" onclick="logout(); return false;">
-            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-        </a>
-    </div>
+    
+    
 </div>
 
-    <!-- قائمة المستخدم -->
-    <div id="userMenu" class="user-menu">
-        <a href="#" onclick="logout(); return false;">
-            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-        </a>
-    </div>
+    
+    
 </div>
 
     <a href="#contact" class="nav-cta" data-key="ncta">ابدأ مشروعك</a>
@@ -1782,106 +1766,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
   if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
 }));
 
-/* ── INIT ── */
-window.addEventListener('DOMContentLoaded', () => {
-  applyTheme();
-  applyLang();
-});
 
-// التحقق من حالة تسجيل الدخول
-function checkLoginStatus() {
-    const user = localStorage.getItem("user");
-    
-    // عناصر الديسكتوب
-    const loginDesktop = document.getElementById("loginLink");
-    const userProfileDesktop = document.getElementById("userProfile");
-    
-    // عناصر الموبايل
-    const loginMobile = document.getElementById("loginLinkMobile");
-    const userSectionMobile = document.getElementById("userSectionMobile");
 
-    if (user) {
-        const userData = JSON.parse(user);
 
-        // === الديسكتوب ===
-        if (loginDesktop) loginDesktop.style.display = "none";
-        if (userProfileDesktop) userProfileDesktop.style.display = "block";
 
-        // === الموبايل ===
-        if (loginMobile) loginMobile.style.display = "none";
-        if (userSectionMobile) userSectionMobile.style.display = "block";
 
-        // تحديث الصورة والاسم (موبايل + ديسكتوب)
-        const avatarDesktop = document.getElementById("userAvatar");
-        const avatarMobile = document.getElementById("userAvatarMobile");
-        const nameMobile = document.getElementById("userNameMobile");
 
-        // صورة الديسكتوب
-        if (avatarDesktop) {
-            if (userData.picture) {
-                avatarDesktop.src = userData.picture;
-            } else {
-                const initial = userData.name ? userData.name[0].toUpperCase() : "U";
-                avatarDesktop.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
-            }
-        }
-
-        // صورة + اسم الموبايل
-        if (avatarMobile) {
-            if (userData.picture) {
-                avatarMobile.src = userData.picture;
-            } else {
-                const initial = userData.name ? userData.name[0].toUpperCase() : "U";
-                avatarMobile.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
-            }
-        }
-
-        if (nameMobile && userData.name) {
-            nameMobile.textContent = userData.name;
-        }
-
-    } else {
-        // لو مش مسجل الدخول
-        if (loginDesktop) loginDesktop.style.display = "flex";
-        if (userProfileDesktop) userProfileDesktop.style.display = "none";
-
-        if (loginMobile) loginMobile.style.display = "flex";
-        if (userSectionMobile) userSectionMobile.style.display = "none";
-    }
-}
-
-// فتح وقفل قائمة المستخدم
-function toggleUserMenu() {
-    const menu = document.getElementById("userMenu");
-    menu.classList.toggle("show");
-}
-
-function toggleUserMenuMobile() {
-    // نفس القائمة للموبايل (نستخدم نفس الـ menu)
-    toggleUserMenu();
-}
-
-// تسجيل الخروج
-function logout() {
-    localStorage.removeItem("user");
-    location.reload(); // إعادة تحميل الصفحة
-}
-
-// إغلاق القائمة لما نضغط بره
-document.addEventListener("click", function(e) {
-    const menu = document.getElementById("userMenu");
-    const profile = document.getElementById("userProfile");
-    if (!profile.contains(e.target)) {
-        menu.classList.remove("show");
-    }
-});
-
-/* ── INIT ── */
-window.addEventListener('DOMContentLoaded', () => {
-    applyTheme();
-    applyLang();
-    checkLoginStatus();     // مهم - بيظهر حالة تسجيل الدخول
-});
 </script>
 </body>
 </html>
