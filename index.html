@@ -828,6 +828,23 @@ body.light-mode .mobile-login-btn {
 body.light-mode .mobile-login-btn:hover {
     background: rgba(0,168,107,0.18);
 }
+.mobile-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,230,138,0.12);
+    color: var(--ac);
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 8px 0;
+    text-decoration: none;
+    border: 1px solid rgba(0,230,138,0.3);
+}
+
+.mobile-login-btn:hover {
+    background: rgba(0,230,138,0.25);
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -851,7 +868,8 @@ body.light-mode .mobile-login-btn:hover {
     <a href="#projects" data-key="n3">الأعمال</a>
     <a href="#faq"      data-key="n5">الأسئلة</a>
 
-        <div class="hdr-controls" style="display:flex; align-items:center; gap:10px; position:relative;">
+        <!-- Controls للموبايل فقط (ثيم + لغة فقط) -->
+<div class="hdr-controls" style="display:flex; align-items:center; gap:10px; position:relative;">
     <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
         <i class="fas fa-moon"></i>
     </button>
@@ -863,15 +881,23 @@ body.light-mode .mobile-login-btn:hover {
         </select>
     </div>
 
-    <!-- زر تسجيل الدخول (يظهر لو مش مسجل) -->
+    <!-- زر تسجيل الدخول في الديسكتوب -->
     <a href="login.html" id="loginLink" class="login-btn">
         <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
     </a>
 
-    <!-- حساب المستخدم (يظهر بعد تسجيل الدخول) -->
+    <!-- حساب المستخدم بعد الدخول (ديسكتوب) -->
     <div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
         <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
     </div>
+
+    <!-- قائمة تسجيل الخروج -->
+    <div id="userMenu" class="user-menu">
+        <a href="#" onclick="logout(); return false;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </a>
+    </div>
+</div>
 
     <!-- قائمة المستخدم -->
     <div id="userMenu" class="user-menu">
@@ -921,13 +947,36 @@ body.light-mode .mobile-login-btn:hover {
   </div>
 </header>
 
+
 <!-- Mobile nav -->
 <nav class="mobile-nav" id="mNav">
-  <a href="#services" data-key="n1" onclick="closeMenu()">الخدمات</a>
-  <a href="#about"    data-key="n2" onclick="closeMenu()">عنّا</a>
-  <a href="#projects" data-key="n3" onclick="closeMenu()">الأعمال</a>
-  <a href="#faq"      data-key="n5" onclick="closeMenu()">الأسئلة الشائعة</a>
-  <a href="#contact" class="m-cta" data-key="ncta" onclick="closeMenu()">ابدأ مشروعك</a>
+    <a href="#services" data-key="n1" onclick="closeMenu()">الخدمات</a>
+    <a href="#about" data-key="n2" onclick="closeMenu()">عنّا</a>
+    <a href="#projects" data-key="n3" onclick="closeMenu()">الأعمال</a>
+    <a href="#faq" data-key="n5" onclick="closeMenu()">الأسئلة الشائعة</a>
+
+    <!-- زر تسجيل الدخول داخل الهامبرجر -->
+    <a href="login.html" id="loginLinkMobile" onclick="closeMenu()" class="mobile-login-btn">
+        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    </a>
+
+    <!-- حساب المستخدم + تسجيل الخروج (يظهر بعد الدخول) -->
+    <div id="userSectionMobile" style="display:none; padding:10px 0;">
+        <div style="padding:12px 14px; display:flex; align-items:center; gap:12px; border-top:1px solid var(--br);">
+            <div class="user-account" style="width:42px; height:42px;" onclick="toggleUserMenu()">
+                <img id="userAvatarMobile" src="" alt="User" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+            </div>
+            <div>
+                <div id="userNameMobile" style="font-weight:700; font-size:15px;"></div>
+                <div style="font-size:12.5px; color:var(--mt);">مسجل الدخول</div>
+            </div>
+        </div>
+        <a href="#" onclick="logout(); closeMenu(); return false;" style="display:block; padding:12px 14px; color:#ff4d4d; font-weight:600;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+        </a>
+    </div>
+
+    <a href="#contact" class="m-cta" data-key="ncta" onclick="closeMenu()">ابدأ مشروعك</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1738,64 +1787,66 @@ window.addEventListener('DOMContentLoaded', () => {
   applyTheme();
   applyLang();
 });
-// التحقق من حالة تسجيل الدخول
-// التحقق من حالة تسجيل الدخول
+
 // التحقق من حالة تسجيل الدخول
 function checkLoginStatus() {
     const user = localStorage.getItem("user");
     
+    // عناصر الديسكتوب
+    const loginDesktop = document.getElementById("loginLink");
+    const userProfileDesktop = document.getElementById("userProfile");
+    
+    // عناصر الموبايل
+    const loginMobile = document.getElementById("loginLinkMobile");
+    const userSectionMobile = document.getElementById("userSectionMobile");
+
     if (user) {
         const userData = JSON.parse(user);
-        
-        // إخفاء أزرار تسجيل الدخول
-        const loginDesktop = document.getElementById("loginLink");
-        const loginMobile  = document.getElementById("loginLinkMobile");
-        
+
+        // === الديسكتوب ===
         if (loginDesktop) loginDesktop.style.display = "none";
-        if (loginMobile)  loginMobile.style.display = "none";
+        if (userProfileDesktop) userProfileDesktop.style.display = "block";
 
-        // إظهار صورة المستخدم + تحديث الصورة
+        // === الموبايل ===
+        if (loginMobile) loginMobile.style.display = "none";
+        if (userSectionMobile) userSectionMobile.style.display = "block";
+
+        // تحديث الصورة والاسم (موبايل + ديسكتوب)
         const avatarDesktop = document.getElementById("userAvatar");
-        const avatarMobile  = document.getElementById("userAvatarMobile");
+        const avatarMobile = document.getElementById("userAvatarMobile");
+        const nameMobile = document.getElementById("userNameMobile");
 
-        const profileDesktop = document.getElementById("userProfile");
-        const profileMobile  = document.getElementById("userProfileMobile");
-
-        // تحديث الصورة
+        // صورة الديسكتوب
         if (avatarDesktop) {
             if (userData.picture) {
                 avatarDesktop.src = userData.picture;
             } else {
-                // Placeholder بأول حرف من الاسم
-                const initial = (userData.name && userData.name.length > 0) 
-                              ? userData.name[0].toUpperCase() 
-                              : "U";
+                const initial = userData.name ? userData.name[0].toUpperCase() : "U";
                 avatarDesktop.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
             }
         }
 
+        // صورة + اسم الموبايل
         if (avatarMobile) {
             if (userData.picture) {
                 avatarMobile.src = userData.picture;
             } else {
-                const initial = (userData.name && userData.name.length > 0) 
-                              ? userData.name[0].toUpperCase() 
-                              : "U";
+                const initial = userData.name ? userData.name[0].toUpperCase() : "U";
                 avatarMobile.src = `https://via.placeholder.com/150/00e68a/ffffff?text=${initial}`;
             }
         }
 
-        // إظهار البروفايل
-        if (profileDesktop) profileDesktop.style.display = "block";
-        if (profileMobile)  profileMobile.style.display = "block";
+        if (nameMobile && userData.name) {
+            nameMobile.textContent = userData.name;
+        }
 
     } else {
-        // لو مفيش مستخدم مسجل → نأكد إن أزرار الدخول ظاهرة
-        const loginDesktop = document.getElementById("loginLink");
-        const loginMobile  = document.getElementById("loginLinkMobile");
-        
+        // لو مش مسجل الدخول
         if (loginDesktop) loginDesktop.style.display = "flex";
-        if (loginMobile)  loginMobile.style.display = "flex";
+        if (userProfileDesktop) userProfileDesktop.style.display = "none";
+
+        if (loginMobile) loginMobile.style.display = "flex";
+        if (userSectionMobile) userSectionMobile.style.display = "none";
     }
 }
 
