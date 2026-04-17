@@ -732,6 +732,63 @@ footer{background:var(--s1);border-top:1px solid var(--br);padding:clamp(36px,7v
 body.light-mode .login-btn:hover {
     background: rgba(0,168,107,0.09);
 }
+/* حساب المستخدم بعد تسجيل الدخول */
+.user-account {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--ac);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,230,138,0.3);
+    transition: all .3s;
+}
+
+.user-account:hover {
+    transform: scale(1.08);
+    border-color: var(--ac2);
+}
+
+.user-menu {
+    position: absolute;
+    top: 75px;
+    left: auto;
+    right: 5%;
+    background: var(--s1);
+    border: 1px solid var(--br);
+    border-radius: 14px;
+    padding: 12px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    min-width: 180px;
+    display: none;
+    z-index: 10000;
+}
+
+.user-menu.show {
+    display: block;
+}
+
+.user-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--tx);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .2s;
+}
+
+.user-menu a:hover {
+    background: rgba(0,230,138,.08);
+    color: var(--ac);
+}
+
+/* للموبايل */
+@media (max-width: 900px) {
+    .user-menu {
+        right: 20px;
+        left: auto;
+    }
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -755,41 +812,61 @@ body.light-mode .login-btn:hover {
     <a href="#projects" data-key="n3">الأعمال</a>
     <a href="#faq"      data-key="n5">الأسئلة</a>
 
-        <div class="hdr-controls" style="display: flex; align-items: center; gap: 10px;">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
-            <i class="fas fa-moon"></i>
-        </button>
-        <div class="lang-select-wrap">
-            <select onchange="changeLang(this.value)" id="langSelect">
-                <option value="ar">AR</option>
-                <option value="en">EN</option>
-                <option value="fr">FR</option>
-            </select>
-        </div>
-        
-        <!-- زر تسجيل الدخول - شكل طبيعي وأنيق -->
-        <a href="login.html" class="login-btn">
-            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+        <div class="hdr-controls" style="display:flex; align-items:center; gap:10px; position:relative;">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="تبديل المظهر">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="lang-select-wrap">
+        <select onchange="changeLang(this.value)" id="langSelect">
+            <option value="ar">AR</option>
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+        </select>
+    </div>
+
+    <!-- زر تسجيل الدخول (يظهر لو مش مسجل) -->
+    <a href="login.html" id="loginLink" class="login-btn">
+        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    </a>
+
+    <!-- حساب المستخدم (يظهر بعد تسجيل الدخول) -->
+    <div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
+        <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <!-- قائمة المستخدم -->
+    <div id="userMenu" class="user-menu">
+        <a href="#" onclick="logout(); return false;">
+            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
         </a>
     </div>
+</div>
 
     <a href="#contact" class="nav-cta" data-key="ncta">ابدأ مشروعك</a>
   </div>
 
   <div style="display:flex;align-items:center;gap:8px">
     <!-- Controls للموبايل فقط (زر الغات + زرار اللغة) -->
-    <div class="hdr-controls" id="mobileControls">
-      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" title="تبديل المظهر">
+    <div class="hdr-controls" id="mobileControls" style="display:flex; align-items:center; gap:10px; position:relative;">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtnMobile" title="تبديل المظهر">
         <i class="fas fa-moon"></i>
-      </button>
-      <div class="lang-select-wrap">
+    </button>
+    <div class="lang-select-wrap">
         <select onchange="changeLang(this.value)" id="langSelectMobile">
-          <option value="ar">AR</option>
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
+            <option value="ar">AR</option>
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
         </select>
-      </div>
     </div>
+
+    <a href="login.html" id="loginLinkMobile" class="login-btn" style="font-size:15px; padding:8px 14px;">
+        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    </a>
+
+    <div id="userProfileMobile" class="user-account" style="display:none; width:42px; height:42px;" onclick="toggleUserMenuMobile()">
+        <img id="userAvatarMobile" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+</div>
 
     <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -1614,7 +1691,65 @@ window.addEventListener('DOMContentLoaded', () => {
   applyTheme();
   applyLang();
 });
+// التحقق من حالة تسجيل الدخول
+function checkLoginStatus() {
+    const user = localStorage.getItem("user");
+    if (user) {
+        const userData = JSON.parse(user);
+        
+        // إخفاء زر تسجيل الدخول
+        document.getElementById("loginLink").style.display = "none";
+        document.getElementById("loginLinkMobile").style.display = "none";
+        
+        // إظهار صورة المستخدم
+        const avatar = document.getElementById("userAvatar");
+        const avatarMobile = document.getElementById("userAvatarMobile");
+        
+        if (userData.picture) {
+            avatar.src = userData.picture;
+            avatarMobile.src = userData.picture;
+        } else {
+            avatar.src = "https://via.placeholder.com/150?text=" + encodeURIComponent(userData.name[0]);
+            avatarMobile.src = "https://via.placeholder.com/150?text=" + encodeURIComponent(userData.name[0]);
+        }
+        
+        document.getElementById("userProfile").style.display = "block";
+        document.getElementById("userProfileMobile").style.display = "block";
+    }
+}
 
+// فتح وقفل قائمة المستخدم
+function toggleUserMenu() {
+    const menu = document.getElementById("userMenu");
+    menu.classList.toggle("show");
+}
+
+function toggleUserMenuMobile() {
+    // نفس القائمة للموبايل (نستخدم نفس الـ menu)
+    toggleUserMenu();
+}
+
+// تسجيل الخروج
+function logout() {
+    localStorage.removeItem("user");
+    location.reload(); // إعادة تحميل الصفحة
+}
+
+// إغلاق القائمة لما نضغط بره
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("userMenu");
+    const profile = document.getElementById("userProfile");
+    if (!profile.contains(e.target)) {
+        menu.classList.remove("show");
+    }
+});
+
+// تشغيل الدالة عند تحميل الصفحة
+window.addEventListener('DOMContentLoaded', () => {
+    applyTheme();
+    applyLang();
+    checkLoginStatus();   // ← مهم جدًا
+});
 </script>
 </body>
 </html>
