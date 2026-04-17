@@ -984,6 +984,12 @@ body.light-mode .mobile-login-btn:hover {
 .logout-btn-mobile:hover {
     background: rgba(255, 77, 77, 0.2);
 }
+/* إخفاء زرار "ابدأ مشروعك" من الـ header على الموبايل */
+@media (max-width: 900px) {
+    .nav-links .nav-cta {
+        display: none !important;
+    }
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
