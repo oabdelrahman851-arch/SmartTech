@@ -93,10 +93,7 @@ a{text-decoration:none;color:inherit}
 /* ── BACKGROUNDS ── */
 .bg-mesh{
   position:fixed;inset:0;z-index:-2;
-  background:
-    radial-gradient(ellipse 55% 45% at 25% 8%,rgba(0,230,138,.07) 0%,transparent 55%),
-    radial-gradient(ellipse 45% 38% at 78% 68%,rgba(0,180,80,.04) 0%,transparent 50%),
-    var(--bg);
+  background: var(--bg); /* لون واحد ثابت */
   transition:background .35s
 }
 .bg-grid{
@@ -104,12 +101,12 @@ a{text-decoration:none;color:inherit}
   background-image:linear-gradient(rgba(0,230,138,.018) 1px,transparent 1px),
     linear-gradient(90deg,rgba(0,230,138,.018) 1px,transparent 1px);
   background-size:64px 64px;
-  animation:gd 30s linear infinite;
+  /* احذف سطر الـ animation */
   pointer-events:none;
   transition:opacity .35s
 }
 body.light-mode .bg-grid{opacity:.5}
-@keyframes gd{to{background-position:64px 64px}}
+
 
 /* ── HEADER ── */
 header{
@@ -1050,6 +1047,15 @@ body.light-mode .mobile-login-btn:hover {
         display: none !important;
     }
 }
+/* إخفاء زر تسجيل الدخول لما المستخدم مسجل */
+.login-hidden {
+    display: none !important;
+}
+
+/* إظهار قسم المستخدم لما يكون مسجل */
+.user-visible {
+    display: block !important;
+}
 </style>
 </head>
 <a href="https://wa.me/201285590979" target="_blank" class="whatsapp-btn">
@@ -1087,22 +1093,25 @@ body.light-mode .mobile-login-btn:hover {
     </div>
 </div>
 
-    <!-- زر تسجيل الدخول في الديسكتوب -->
-    <a href="login.html" id="loginLinkNav" onclick="closeMenu()" class="mobile-login-btn">
-      <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    <!-- زر تسجيل الدخول -->
+<a href="login.html" id="loginLinkNav" class="mobile-login-btn">
+    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+</a>
+
+<!-- صورة المستخدم (مخفية بالافتراضي) -->
+<div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
+    <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
+</div>
+
+<!-- قائمة المستخدم -->
+<div id="userMenu" class="user-menu">
+    <a href="login.html">
+        <i class="fas fa-user-circle"></i> تبديل الحساب
     </a>
-
-    <!-- حساب المستخدم بعد الدخول (ديسكتوب) -->
-    <div id="userProfile" class="user-account" style="display:none;" onclick="toggleUserMenu()">
-        <img id="userAvatar" src="" alt="User" style="width:100%; height:100%; object-fit:cover;">
-    </div>
-
-    <!-- قائمة تسجيل الخروج -->
-    <div id="userMenu" class="user-menu">
-        <a href="#" onclick="logout(); return false;">
-            <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-        </a>
-    </div>
+    <a href="#" onclick="logout(); return false;" style="color:#ff6b6b">
+        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+    </a>
+</div>
 </div>
 
     <!-- قائمة المستخدم -->
@@ -1166,28 +1175,32 @@ body.light-mode .mobile-login-btn:hover {
     
     <div class="mobile-nav-divider"></div>
     
-    <!-- زر تسجيل الدخول (يظهر لما يكون مش مسجل) -->
-    <a href="login.html" id="loginLinkMobile" onclick="closeMenu()" class="mobile-login-btn">
-        <i class="fas fa-sign-in-alt"></i> 
-        <span data-key="login_btn">تسجيل الدخول</span>
-    </a>
+    <!-- زر تسجيل الدخول -->
+<a href="login.html" id="loginLinkMobile" onclick="closeMenu()" class="mobile-login-btn">
+    <i class="fas fa-sign-in-alt"></i>
+    <span data-key="login_btn">تسجيل الدخول</span>
+</a>
 
-    <!-- قسم المستخدم (يظهر بعد تسجيل الدخول) -->
-    <div id="userSectionMobile" class="user-section-mobile">
-        <div class="user-info-mobile">
-            <div class="user-avatar-mobile">
-                <img id="userAvatarMobile" src="" alt="User">
-            </div>
-            <div class="user-details-mobile">
-                <div id="userNameMobile" class="user-name-mobile"></div>
-                <div class="user-status-mobile" data-key="logged_in">مسجل الدخول</div>
-            </div>
+<!-- قسم المستخدم (مخفي بالافتراضي) -->
+<div id="userSectionMobile" class="user-section-mobile" style="display:none;">
+    <div class="user-info-mobile">
+        <div class="user-avatar-mobile">
+            <img id="userAvatarMobile" src="" alt="User">
         </div>
-        <a href="#" onclick="logout(); closeMenu(); return false;" class="logout-btn-mobile">
-            <i class="fas fa-sign-out-alt"></i> 
-            <span data-key="logout_btn">تسجيل الخروج</span>
-        </a>
+        <div class="user-details-mobile">
+            <div id="userNameMobile" class="user-name-mobile"></div>
+            <div class="user-status-mobile">مسجل الدخول</div>
+        </div>
     </div>
+    <a href="login.html" onclick="closeMenu();" class="logout-btn-mobile" style="background:rgba(0,230,138,.1);border-color:rgba(0,230,138,.3);color:var(--ac);margin-bottom:8px;">
+        <i class="fas fa-user-circle"></i>
+        <span>تبديل الحساب</span>
+    </a>
+    <a href="#" onclick="logout(); closeMenu(); return false;" class="logout-btn-mobile">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>تسجيل الخروج</span>
+    </a>
+</div>
 
     <a href="#contact" class="m-cta" data-key="ncta" onclick="closeMenu()">ابدأ مشروعك</a>
 </nav>
@@ -1898,58 +1911,51 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
   if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
 }));
 
-/* ── INIT ── */
-window.addEventListener('DOMContentLoaded', () => {
-  applyTheme();
-  applyLang();
-});
 
-// التحقق من حالة تسجيل الدخول
+
 function checkLoginStatus() {
     const user = localStorage.getItem("user");
     
-    // عناصر الديسكتوب
-    const loginDesktop = document.getElementById("loginLink");
-    const userProfileDesktop = document.getElementById("userProfile");
-    
-    // عناصر الموبايل (جوه الـ hamburger menu)
+    // عناصر تسجيل الدخول
+    const loginDesktop = document.getElementById("loginLinkNav");
     const loginMobile = document.getElementById("loginLinkMobile");
+    
+    // عناصر المستخدم
+    const userProfileDesktop = document.getElementById("userProfile");
     const userSectionMobile = document.getElementById("userSectionMobile");
 
     if (user) {
+        // ✅ مسجل دخول
         const userData = JSON.parse(user);
-        const initial = userData.name ? userData.name[0].toUpperCase() : "U";
         const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name || 'User')}&background=00e68a&color=fff&size=150`;
 
-        // === الديسكتوب ===
-        if (loginDesktop) loginDesktop.style.display = "none";
-        if (userProfileDesktop) userProfileDesktop.style.display = "block";
+        // إخفاء أزرار تسجيل الدخول
+        if (loginDesktop) loginDesktop.classList.add("login-hidden");
+        if (loginMobile) loginMobile.classList.add("login-hidden");
 
-        // === الموبايل ===
-        if (loginMobile) loginMobile.style.display = "none";
-        if (userSectionMobile) userSectionMobile.style.display = "block";
+        // إظهار عناصر المستخدم
+        if (userProfileDesktop) {
+            userProfileDesktop.style.display = "block";
+        }
+        if (userSectionMobile) {
+            userSectionMobile.style.display = "block";
+        }
 
         // تحديث الصور والأسماء
         const avatarDesktop = document.getElementById("userAvatar");
         const avatarMobile = document.getElementById("userAvatarMobile");
         const nameMobile = document.getElementById("userNameMobile");
 
-        if (avatarDesktop) {
-            avatarDesktop.src = userData.picture || defaultAvatar;
-        }
-        if (avatarMobile) {
-            avatarMobile.src = userData.picture || defaultAvatar;
-        }
-        if (nameMobile) {
-            nameMobile.textContent = userData.name || "مستخدم";
-        }
+        if (avatarDesktop) avatarDesktop.src = userData.picture || defaultAvatar;
+        if (avatarMobile) avatarMobile.src = userData.picture || defaultAvatar;
+        if (nameMobile) nameMobile.textContent = userData.name || "مستخدم";
 
     } else {
-        // مش مسجل دخول
-        if (loginDesktop) loginDesktop.style.display = "flex";
-        if (userProfileDesktop) userProfileDesktop.style.display = "none";
+        // ❌ مش مسجل
+        if (loginDesktop) loginDesktop.classList.remove("login-hidden");
+        if (loginMobile) loginMobile.classList.remove("login-hidden");
 
-        if (loginMobile) loginMobile.style.display = "flex";
+        if (userProfileDesktop) userProfileDesktop.style.display = "none";
         if (userSectionMobile) userSectionMobile.style.display = "none";
     }
 }
@@ -1983,7 +1989,7 @@ document.addEventListener("click", function(e) {
 window.addEventListener('DOMContentLoaded', () => {
     applyTheme();
     applyLang();
-    checkLoginStatus();     // مهم - بيظهر حالة تسجيل الدخول
+    checkLoginStatus();
 });
 </script>
 </body>
