@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 /* ══════════════════════════════════════
-   DARK MODE (default)
+  DARK MODE (default)
 ══════════════════════════════════════ */
 :root{
   --bg:#07120e;
@@ -24,9 +24,21 @@
   --f:'Cairo',sans-serif;
   --shadow-card: 0 4px 24px rgba(0,0,0,.35);
 }
+/* Desktop controls */
+#desktopControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  #desktopControls {
+    display: none !important;
+  }
+}
 
 /* ══════════════════════════════════════
-   LIGHT MODE
+  LIGHT MODE
 ══════════════════════════════════════ */
 body.light-mode{
   --bg: #f8f9fa;          /* أبيض رمادي خفيف بدل الأخضر */
@@ -162,16 +174,35 @@ body.light-mode header.sc{background:rgba(242,247,244,.96)}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
 .mobile-nav{
-  position:fixed;top:68px;left:0;right:0;z-index:999;
-  background:rgba(7,18,14,.97);
+  position:fixed;
+  top: var(--hdr-h); left:-100%;
+  width:80%; max-width:320px;
+  height: calc(100vh - var(--hdr-h));
+  background:rgba(7,18,14,.98);
   backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--br);
-  padding:0;max-height:0;overflow:hidden;transition:all .35s ease
+  border-right:1px solid var(--br);
+  border-left:none;
+  padding:85px 20px 30px;
+  z-index:998;
+  transition:left .4s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;
 }
+.mobile-nav.open{left:0}
+body.light-mode .mobile-nav{background:rgba(242,247,244,.98)}
+.mobile-nav.open{right:0}
+
+.nav-overlay{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:997;
+  backdrop-filter:blur(2px);
+}
+.nav-overlay.show{display:block}
 body.light-mode .mobile-nav{background:rgba(242,247,244,.97)}
-.mobile-nav.open{max-height:440px;padding:14px 18px 22px}
+
 .mobile-nav a,.mobile-nav button{
-  display:block;width:100%;color:var(--mt);font-size:15px;font-weight:600;
+  display:block !important;width:100%;color:var(--mt);font-size:15px;font-weight:600;
   padding:11px 14px;border-radius:10px;text-align:right;transition:all .2s;
   background:none;border:none;cursor:pointer;font-family:var(--f)
 }
@@ -1055,6 +1086,18 @@ body.light-mode .mobile-login-btn:hover {
         </a>
     </div>
 </div>
+<div id="desktopControls">
+  <button class="theme-toggle" onclick="toggleTheme()" title="تبديل المظهر">
+    <i class="fas fa-moon"></i>
+  </button>
+  <div class="lang-select-wrap">
+    <select onchange="changeLang(this.value)" id="langSelect">
+      <option value="ar">AR</option>
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+    </select>
+  </div>
+</div>
 
     <a href="#contact" class="nav-cta" data-key="ncta">ابدأ مشروعك</a>
   </div>
@@ -1086,7 +1129,7 @@ body.light-mode .mobile-login-btn:hover {
     </button>
   </div>
 </header>
-
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
 <!-- Mobile nav -->
 <nav class="mobile-nav" id="mNav">
@@ -1837,14 +1880,20 @@ function toggleProjects(){
 /* ── Open project link ── */
 function openProject(url){ window.open(url, '_blank'); }
 
-/* ── Hamburger ── */
 function toggleMenu(){
-  document.getElementById('ham').classList.toggle('open');
-  document.getElementById('mNav').classList.toggle('open');
+  const ham = document.getElementById('ham');
+  const nav = document.getElementById('mNav');
+  const overlay = document.getElementById('navOverlay');
+  ham.classList.toggle('open');
+  nav.classList.toggle('open');
+  overlay.classList.toggle('show');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
 }
 function closeMenu(){
   document.getElementById('ham').classList.remove('open');
   document.getElementById('mNav').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('show');
+  document.body.style.overflow = '';
 }
 
 /* ── Header scroll ── */
