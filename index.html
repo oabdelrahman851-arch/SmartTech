@@ -223,7 +223,7 @@ body.light-mode .mobile-nav{background:rgba(242,247,244,.97)}
   position:absolute;inset:0;z-index:0;
   background-image:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><rect fill="%23000"/></svg>');
   background-size:cover;background-position:center;
-  filter:brightness(.18) saturate(0.6) blur(0px);
+  
   transition:filter .3s
 }
 .hero-bg-img::after{
@@ -250,10 +250,6 @@ body.light-mode .mobile-nav{background:rgba(242,247,244,.97)}
   object-fit:cover;
   object-position:center bottom;
   opacity:.22;
-  filter:brightness(.5) saturate(.6);
-  animation:building-glow 4s ease-in-out infinite;
-  mask-image:linear-gradient(to top,transparent 0%,black 25%,black 75%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to top,transparent 0%,black 25%,black 75%,transparent 100%);
 }
 @keyframes img-pulse {
   0%,100%{ opacity:.45; filter:brightness(1) saturate(.9) }
@@ -261,12 +257,14 @@ body.light-mode .mobile-nav{background:rgba(242,247,244,.97)}
 }
 
 body.light-mode .hero-building-img{
-  opacity:.45;
-  filter:brightness(1) saturate(.9);
+  opacity: 0.85;;
+  filter: none;
   mask-image:none;
-  -webkit-mask-image:none;
   mix-blend-mode:normal;
-  animation: img-pulse 4s ease-in-out infinite;
+  image-rendering: auto;
+  object-fit: cover;
+  display: block;
+
 }
 @keyframes building-glow{
   0%,100%{opacity:.18;filter:drop-shadow(0 0 30px rgba(0,230,138,.2))}
@@ -1208,7 +1206,7 @@ body.light-mode .mobile-login-btn:hover {
 <div class="hero">
   <!-- Building Background SVG (clean, no pixelation) -->
   <div class="hero-building">
-    <img src="38a9cdf1-b249-4785-81e1-4de1907088cf.jfif" class="hero-building-img" alt="Smart Tech Building">
+    <img src="7ffd9b86-259d-4a3a-91e0-ed42280cc2ff.jfif" class="hero-building-img" alt="Smart Tech Building">
   </div>
 
   <div class="hero-rings"><div class="ring"></div><div class="ring"></div><div class="ring"></div></div>
