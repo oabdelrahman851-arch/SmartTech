@@ -41,46 +41,102 @@
   LIGHT MODE
 ══════════════════════════════════════ */
 body.light-mode{
-  --bg: #f8f9fa;          /* أبيض رمادي خفيف بدل الأخضر */
-  --s1: #ffffff;           /* كارت أبيض نظيف */
-  --s2: #f0f4f2;           /* رمادي فاتح خفيف */
-  --ac: #00a86b;           /* أخضر واضح ومشرق */
-  --ac2: #007a4d;          /* أخضر داكن للهوفر */
-  --tx: #111827;           /* أسود طبيعي للنصوص */
-  --mt: #4b5563;           /* رمادي متوسط للنصوص الثانوية */
-  --br: rgba(0,0,0,.10);   /* حدود رمادية خفيفة */
-  --shadow-card: 0 4px 18px rgba(0,0,0,.08);
-}
-body.light-mode .vis {
-  background: linear-gradient(135deg, #e8f5ee, #f0faf5);
-  border-color: rgba(0, 120, 80, .18);
-}
-
-body.light-mode .vis-in {
-  background: radial-gradient(circle at 50% 50%, rgba(0,168,107,.12), transparent 70%);
+  --bg: #f8fafc;
+  --s1: #ffffff;
+  --s2: #f1f5f9;
+  
+  --ac: #006b44;           
+  --ac2: #004d30;
+  
+  --tx: #0a0f1c;           /* أسود غامق جدًا */
+  --mt: #f6faf6;           /* رمادي غامق جدًا */
+  
+  --br: rgba(15, 23, 42, 0.22);
+  --shadow-card: 0 12px 35px rgba(0,0,0,0.11);
 }
 
-body.light-mode .vr {
-  border-color: rgba(0, 120, 80, .18);
+/* حجم الخط العام في اللايت مود */
+body.light-mode {
+  font-size: 18px;
+  line-height: 1.9;
 }
 
-body.light-mode .vr:nth-child(2) {
-  border-color: rgba(0, 100, 60, .12);
+/* كل النصوص الثانوية */
+body.light-mode .ss,
+body.light-mode p,
+body.light-mode .srv p,
+body.light-mode .proj-bd p,
+body.light-mode .tst p,
+body.light-mode .faq-a,
+body.light-mode .hero p,
+body.light-mode .scroll-cue {
+  color: var(--mt);
+  font-size: 17.2px;
+  line-height: 1.85;
 }
 
-body.light-mode .vr:nth-child(3) {
-  border-color: rgba(0, 120, 80, .08);
+/* جعل الأرقام في Light Mode نفس الدارك مود بالظبط */
+body.light-mode .stat .n {
+  font-size: clamp(28px, 4.5vw, 52px) !important;
+  font-weight: 900 !important;
+  background: linear-gradient(135deg, #010831, rgb(12, 233, 233)) !important;   /* نفس التدرج الجميل في الدارك */
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
-body.light-mode .vis-icon {
-  filter: drop-shadow(0 0 20px rgba(0, 150, 80, .35));
+/* الكلام تحت الأرقام (مشروع منجز - رضا العملاء ...) */
+body.light-mode .stat .l {
+  color: #020305 !important;     /* أسود غامق واضح */
+  font-size: 18.5px !important;
+  font-weight: 700 !important;
+  margin-top: 8px !important;
 }
 
-body.light-mode .vis-badge {
-  background: #ffffff;
-  border-color: rgba(0, 120, 80, .25);
-  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+
+/* ====================== باقي التحسينات ====================== */
+body.light-mode h3,
+body.light-mode .srv h3,
+body.light-mode .proj-bd h3,
+body.light-mode .tst-name,
+body.light-mode .lbl {
+  color: var(--tx);
+  font-size: 18.5px;
+  font-weight: 700;
 }
+
+/* زر "أعمالنا" و "عرض الكل" */
+body.light-mode #viewAllBtn,
+body.light-mode .btn-o,
+body.light-mode .nav-links a {
+  color: var(--tx);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+body.light-mode #viewAllBtn:hover,
+body.light-mode .btn-o:hover {
+  color: var(--ac);
+  background: rgba(0,107,68,0.09);
+}
+
+/* الكروت */
+body.light-mode .srv,
+body.light-mode .proj,
+body.light-mode .tst,
+body.light-mode .faq-item {
+  border-color: rgba(15,23,42,.20);
+  box-shadow: var(--shadow-card);
+}
+
+/* الـ Chip في الهيرو */
+body.light-mode .chip {
+  background: #006b44;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
