@@ -50,15 +50,15 @@ a:hover, a:focus, a:active {
     LIGHT MODE - النسخة فائقة الوضوح (Ultra Contrast)
 ══════════════════════════════════════ */
 body.light-mode {
-    --bg: #ffffff;
-    --s1: #ffffff;
-    --s2: #f1f5f9;
-    --ac: #0052cc;           /* أزرق صريح وقوي */
-    --ac2: #003d99;
-    --tx: #000000;           /* أسود صريح للنصوص */
-    --mt: #000000;           /* أسود صريح للنصوص الثانوية أيضاً */
-    --br: rgba(0, 0, 0, 0.15);
-    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --bg: #f8fafc;           /* خلفية فاتحة جداً بلمسة احترافية */
+    --s1: #ffffff;           /* لون الأسطح بيضاء تماماً */
+    --s2: #f0fdf4;           /* لون ثانوي مشتق من أخضر الهوية */
+    --ac: #00e68a;           /* نفس لون الأكسنت من الدارك مود */
+    --ac2: #008f56;          /* نسخة أغمق قليلاً للوضوح في الخلفية الفاتحة */
+    --tx: #06120e;           /* لون النص الأساسي (داكن جداً للوضوح) */
+    --mt: #4a5c54;           /* لون النص الثانوي المنسجم مع الأخضر */
+    --br: rgba(0, 230, 138, 0.15); /* حدود ناعمة بلون الهوية */
+    --shadow-card: 0 10px 40px rgba(0, 30, 20, 0.06);
 }
 
 /* --- تعديل البراجرافات (النصوص الصغيرة) لتكون متوازنة --- */
@@ -71,52 +71,53 @@ body.light-mode .ft-brand p,
 body.light-mode .srv p, 
 body.light-mode .ci-tx span, 
 body.light-mode .stat .l {
-    color: #000000 !important;    /* حافظنا على اللون الأسود الواضح */
-    font-size: clamp(15px, 2.5vw, 17px) !important; /* حجم متوازن: 15 للموبايل و17 للديسكتوب */
-    font-weight: 500 !important;   /* وزن متوسط (Medium) بدل الـ Bold التقيل */
-    line-height: 1.7 !important;   /* مسافة مريحة بين السطور */
+    color: var(--mt) !important;
+    font-size: clamp(15px, 2.5vw, 16px) !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
     opacity: 1 !important;
 }
 
 /* تصغير وصف الهيرو شوية كمان عشان التوازن */
 body.light-mode .hero p {
-    font-size: clamp(18px, 4vw, 21px) !important;
-    color: #111111 !important;
+    font-size: clamp(17px, 3.5vw, 19px) !important;
+    color: var(--mt) !important;
     font-weight: 500 !important;
     max-width: 750px;
 }
 
 /* العناوين الفرعية (H3) نصغرها برضه عشان متضايقش العين */
 body.light-mode h3 {
-    color: #000000 !important;
-    font-size: clamp(19px, 3vw, 22px) !important;
-    font-weight: 800 !important;
+    color: var(--tx) !important;
+    font-size: clamp(18px, 2.8vw, 20px) !important;
+    font-weight: 700 !important;
 }
 
 /* --- تظبيط الهيدر (القائمة العلوية) --- */
 body.light-mode header .nav-links a {
-    color: #000000 !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
+    color: var(--mt) !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
 }
 
 /* --- تظبيط خلفية الهيرو لضمان القراءة --- */
 body.light-mode .hero-bg-img::after {
-    background: rgba(255, 255, 255, 0.85) !important; /* طبقة بيضاء سميكة خلف الكلام */
+    background: linear-gradient(to bottom, rgba(248, 250, 252, 0.7) 0%, var(--bg) 100%) !important;
 }
 
 /* --- الأزرار --- */
 body.light-mode .btn-p {
-    background: #000000 !important; /* زر أسود بمتن أبيض لقمة التباين */
+    background: linear-gradient(135deg, var(--ac2), var(--ac)) !important;
     color: #ffffff !important;
-    font-size: 18px !important;
-    padding: 15px 40px !important;
+    font-size: 16px !important;
+    box-shadow: 0 10px 20px rgba(0, 230, 138, 0.2) !important;
 }
 
 body.light-mode .btn-o {
-    border: 3px solid #000000 !important;
-    color: #000000 !important;
-    font-weight: 900;
+    border: 2px solid var(--ac) !important;
+    color: var(--ac2) !important;
+    background: transparent !important;
+    font-weight: 700;
 }
 
 /* ── BACKGROUNDS ── */
