@@ -47,86 +47,99 @@ a:hover, a:focus, a:active {
 }
 
 /* ══════════════════════════════════════════════════════════
-    SMART TECH - LIGHT MODE (PRECISION COLORING)
+    SMART TECH - LIGHT MODE (GOLD & CONTRAST EDITION)
 ══════════════════════════════════════════════════════════ */
 
 body.light-mode {
-    --bg: #F4F7F8;          
+    /* درجة الرمادي الرخامي الاحترافية لإظهار التباين */
+    --bg: #CFD8DC;          
     --s1: #ffffff;          
-    --s2: #EBF3F4;          
+    --s2: #B0BEC5;          
     --ac: #57BCA5;          /* الأخضر التركوازي */
-    --ac-gold: #CCA27F;     /* الذهبي الرملي */
-    --ac2: #1A2F44;         /* الكحلي */
-    --text-main: #1A2F44;   /* لون النصوص الأساسي لبقية الموقع */
+    --ac-gold: #CCA27F;     /* الذهبي الرملي للإطارات */
+    --ac2: #1A2F44;         /* الكحلي الملكي */
 }
 
-/* ── 1. العنوان الرئيسي: مكس أخضر وأصفر فسفوري ── */
+/* ── 1. العنوان الرئيسي: مكس ألوان الصورة (فسفوري) ── */
 body.light-mode .hero h1 .gr {
     background: linear-gradient(90deg, #57BCA5 0%, #D4E157 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
     font-weight: 900 !important;
+    filter: drop-shadow(0 2px 10px rgba(87, 188, 165, 0.3)) !important;
 }
 
-/* ── 2. الأرقام: الأصفر المضيء ── */
+/* ── 2. نصوص الـ Hero (الأبيض النقي القوي) ── */
+body.light-mode .hero p, 
+body.light-mode .hero .sub-title, 
+body.light-mode .stat .l,
+body.light-mode .stat-label {
+    color: #FFFFFF !important;
+    background: none !important;
+    padding: 0 !important;
+    text-shadow: 1px 1px 5px rgba(26, 47, 68, 0.5) !important;
+    font-weight: 800 !important;
+}
+
+/* ── 3. الأرقام: الذهبي الملكي المشع (Glow) ── */
 body.light-mode .stat .n,
 body.light-mode .stat h4, 
 body.light-mode .stat .num {
-    color: #FFD43B !important; 
+    color: #FFD700 !important; /* لون الذهب الصافي */
     font-weight: 900 !important;
     -webkit-text-fill-color: initial !important; 
     background: none !important;
-    text-shadow: 0 0 15px rgba(255, 212, 59, 0.6) !important;
+    /* شعاع نيون ذهبي قوي */
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.6),
+        0 0 25px rgba(255, 215, 0, 0.4) !important;
 }
 
-/* ── 3. نصوص قسم الـ Hero فقط (الأبيض الفخم) ── */
-body.light-mode .hero p,
-body.light-mode .hero .sub-title,
-body.light-mode .stat .l {
-    color: #FFFFFF !important; /* أبيض نقي */
-    text-shadow: 1px 1px 3px rgba(26, 47, 68, 0.5) !important;
-    font-weight: 700 !important;
-}
-
-/* ── 4. نصوص بقية الموقع (ترجع كحلي/أسود للوضوح) ── */
-body.light-mode p:not(.hero p), 
-body.light-mode .ss, 
-body.light-mode .proj-bd p, 
-body.light-mode .tst p, 
-body.light-mode .faq-a, 
-body.light-mode .ft-brand p,
-body.light-mode .srv p, 
-body.light-mode .ci-tx span,
-body.light-mode h3 {
-    color: var(--text-main) !important; /* كحلي داكن */
-    text-shadow: none !important; /* حذف الظل لراحة العين */
-    background: none !important;
-    padding: 0 !important;
-}
-
-/* ── 5. الهيدر واللغات (كحلي واضح) ── */
+/* ── 4. المنيو وأزرار اللغات: كحلي داكن وواضح ── */
 body.light-mode header nav a,
-body.light-mode header .langs a, 
-body.light-mode header .langs span {
+body.light-mode .nav-link-item,
+body.light-mode .header-lang-select,
+body.light-mode .lang-select-wrap select {
     color: #1A2F44 !important;
     font-weight: 800 !important;
     text-shadow: none !important;
+    background: transparent;
+    border: none;
 }
 
-/* ── 6. الأزرار (موحدة باللون التركوازي) ── */
-body.light-mode .btn-p,
-body.light-mode .btn-o {
-    background: var(--ac) !important;
-    color: #1A2F44 !important; /* نص كحلي داكن للوضوح */
-    border: 1px solid var(--ac-gold) !important;
-    font-weight: 800 !important;
+/* ── 5. زرار ابدأ مشروعك: كحلي في ذهبي ── */
+body.light-mode .btn-start-project {
+    background: #1A2F44 !important; /* خلفية كحلية */
+    color: #FFD700 !important;      /* نص ذهبي */
+    border: 2px solid #FFD700 !important; /* إطار ذهبي */
+    padding: 12px 28px !important;
+    border-radius: 12px !important;
+    font-weight: 900 !important;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s all ease;
+}
+
+body.light-mode .btn-start-project:hover {
+    background: #FFD700 !important;
+    color: #1A2F44 !important;
+    transform: translateY(-3px);
+}
+
+/* ── 6. بقية نصوص الموقع ── */
+body.light-mode p:not(.hero p):not(.stat .l), 
+body.light-mode h3, 
+body.light-mode .srv p {
+    color: #1A2F44 !important;
+    text-shadow: none !important;
 }
 
 /* ── 7. الهيدر ── */
 body.light-mode header {
-    background: rgba(244, 247, 248, 0.95) !important;
-    border-bottom: 1px solid rgba(87, 188, 165, 0.2) !important;
+    background: rgba(207, 216, 220, 0.95) !important;
+    border-bottom: 1px solid rgba(26, 47, 68, 0.1) !important;
+    backdrop-filter: blur(10px);
 }
 
 /* ── BACKGROUNDS ── */
