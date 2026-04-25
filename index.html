@@ -61,52 +61,36 @@ body.light-mode {
     --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* --- تعديل البراجرافات (النصوص الصغيرة) لتكون واضحة جداً --- */
+/* --- تعديل البراجرافات (النصوص الصغيرة) لتكون متوازنة --- */
 body.light-mode p, 
 body.light-mode .ss, 
 body.light-mode .proj-bd p, 
 body.light-mode .tst p, 
 body.light-mode .faq-a, 
 body.light-mode .ft-brand p,
-body.light-mode .srv p,
-body.light-mode .ci-tx span,
+body.light-mode .srv p, 
+body.light-mode .ci-tx span, 
 body.light-mode .stat .l {
-    color: #000000 !important;    /* أسود فاحم - أعلى درجة تباين ممكنة */
-    font-size: 20px !important;    /* تكبير الخط لدرجة ممتازة (20 بكسل) */
-    font-weight: 600 !important;   /* خط سميك (Semi-Bold) علشان يظهر بوضوح */
-    line-height: 1.6 !important;
-    opacity: 1 !important;         /* ممنوع أي نوع من الشفافية */
-    text-align: inherit;
+    color: #000000 !important;    /* حافظنا على اللون الأسود الواضح */
+    font-size: clamp(15px, 2.5vw, 17px) !important; /* حجم متوازن: 15 للموبايل و17 للديسكتوب */
+    font-weight: 500 !important;   /* وزن متوسط (Medium) بدل الـ Bold التقيل */
+    line-height: 1.7 !important;   /* مسافة مريحة بين السطور */
+    opacity: 1 !important;
 }
 
-/* --- تعديل الهيرو (العنوان ووصفه) --- */
-body.light-mode .hero h1 {
-    color: #000000 !important;
-    font-weight: 900 !important;
-}
-
+/* تصغير وصف الهيرو شوية كمان عشان التوازن */
 body.light-mode .hero p {
-    font-size: 24px !important;    /* وصف الهيرو كبير جداً */
-    color: #000000 !important;
-    font-weight: 700 !important;
-    max-width: 850px;
+    font-size: clamp(18px, 4vw, 21px) !important;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    max-width: 750px;
 }
 
-/* --- الأرقام (Stats) بتدريج قوي وواضح --- */
-body.light-mode .stat .n {
-    background: linear-gradient(135deg, #0052cc 0%, #00a86b 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    font-size: 60px !important; 
-    font-weight: 900 !important;
-}
-
-/* --- العناوين (H3) في الخدمات والمشاريع --- */
+/* العناوين الفرعية (H3) نصغرها برضه عشان متضايقش العين */
 body.light-mode h3 {
     color: #000000 !important;
-    font-size: 24px !important;
+    font-size: clamp(19px, 3vw, 22px) !important;
     font-weight: 800 !important;
-    margin-bottom: 10px;
 }
 
 /* --- تظبيط الهيدر (القائمة العلوية) --- */
