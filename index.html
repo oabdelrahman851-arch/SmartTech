@@ -46,78 +46,87 @@ a:hover, a:focus, a:active {
   }
 }
 
-/* ══════════════════════════════════════
-    LIGHT MODE - النسخة فائقة الوضوح (Ultra Contrast)
-══════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════
+    SMART TECH - LIGHT MODE (PRECISION COLORING)
+══════════════════════════════════════════════════════════ */
+
 body.light-mode {
-    --bg: #f8fafc;           /* خلفية فاتحة جداً بلمسة احترافية */
-    --s1: #ffffff;           /* لون الأسطح بيضاء تماماً */
-    --s2: #f0fdf4;           /* لون ثانوي مشتق من أخضر الهوية */
-    --ac: #00e68a;           /* نفس لون الأكسنت من الدارك مود */
-    --ac2: #008f56;          /* نسخة أغمق قليلاً للوضوح في الخلفية الفاتحة */
-    --tx: #06120e;           /* لون النص الأساسي (داكن جداً للوضوح) */
-    --mt: #4a5c54;           /* لون النص الثانوي المنسجم مع الأخضر */
-    --br: rgba(0, 230, 138, 0.15); /* حدود ناعمة بلون الهوية */
-    --shadow-card: 0 10px 40px rgba(0, 30, 20, 0.06);
+    --bg: #F4F7F8;          
+    --s1: #ffffff;          
+    --s2: #EBF3F4;          
+    --ac: #57BCA5;          /* الأخضر التركوازي */
+    --ac-gold: #CCA27F;     /* الذهبي الرملي */
+    --ac2: #1A2F44;         /* الكحلي */
+    --text-main: #1A2F44;   /* لون النصوص الأساسي لبقية الموقع */
 }
 
-/* --- تعديل البراجرافات (النصوص الصغيرة) لتكون متوازنة --- */
-body.light-mode p, 
+/* ── 1. العنوان الرئيسي: مكس أخضر وأصفر فسفوري ── */
+body.light-mode .hero h1 .gr {
+    background: linear-gradient(90deg, #57BCA5 0%, #D4E157 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 900 !important;
+}
+
+/* ── 2. الأرقام: الأصفر المضيء ── */
+body.light-mode .stat .n,
+body.light-mode .stat h4, 
+body.light-mode .stat .num {
+    color: #FFD43B !important; 
+    font-weight: 900 !important;
+    -webkit-text-fill-color: initial !important; 
+    background: none !important;
+    text-shadow: 0 0 15px rgba(255, 212, 59, 0.6) !important;
+}
+
+/* ── 3. نصوص قسم الـ Hero فقط (الأبيض الفخم) ── */
+body.light-mode .hero p,
+body.light-mode .hero .sub-title,
+body.light-mode .stat .l {
+    color: #FFFFFF !important; /* أبيض نقي */
+    text-shadow: 1px 1px 3px rgba(26, 47, 68, 0.5) !important;
+    font-weight: 700 !important;
+}
+
+/* ── 4. نصوص بقية الموقع (ترجع كحلي/أسود للوضوح) ── */
+body.light-mode p:not(.hero p), 
 body.light-mode .ss, 
 body.light-mode .proj-bd p, 
 body.light-mode .tst p, 
 body.light-mode .faq-a, 
 body.light-mode .ft-brand p,
 body.light-mode .srv p, 
-body.light-mode .ci-tx span, 
-body.light-mode .stat .l {
-    color: var(--mt) !important;
-    font-size: clamp(15px, 2.5vw, 16px) !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-    opacity: 1 !important;
-}
-
-/* تصغير وصف الهيرو شوية كمان عشان التوازن */
-body.light-mode .hero p {
-    font-size: clamp(17px, 3.5vw, 19px) !important;
-    color: var(--mt) !important;
-    font-weight: 500 !important;
-    max-width: 750px;
-}
-
-/* العناوين الفرعية (H3) نصغرها برضه عشان متضايقش العين */
+body.light-mode .ci-tx span,
 body.light-mode h3 {
-    color: var(--tx) !important;
-    font-size: clamp(18px, 2.8vw, 20px) !important;
-    font-weight: 700 !important;
+    color: var(--text-main) !important; /* كحلي داكن */
+    text-shadow: none !important; /* حذف الظل لراحة العين */
+    background: none !important;
+    padding: 0 !important;
 }
 
-/* --- تظبيط الهيدر (القائمة العلوية) --- */
-body.light-mode header .nav-links a {
-    color: var(--mt) !important;
-    font-size: 14.5px !important;
-    font-weight: 600 !important;
+/* ── 5. الهيدر واللغات (كحلي واضح) ── */
+body.light-mode header nav a,
+body.light-mode header .langs a, 
+body.light-mode header .langs span {
+    color: #1A2F44 !important;
+    font-weight: 800 !important;
+    text-shadow: none !important;
 }
 
-/* --- تظبيط خلفية الهيرو لضمان القراءة --- */
-body.light-mode .hero-bg-img::after {
-    background: linear-gradient(to bottom, rgba(248, 250, 252, 0.7) 0%, var(--bg) 100%) !important;
-}
-
-/* --- الأزرار --- */
-body.light-mode .btn-p {
-    background: linear-gradient(135deg, var(--ac2), var(--ac)) !important;
-    color: #ffffff !important;
-    font-size: 16px !important;
-    box-shadow: 0 10px 20px rgba(0, 230, 138, 0.2) !important;
-}
-
+/* ── 6. الأزرار (موحدة باللون التركوازي) ── */
+body.light-mode .btn-p,
 body.light-mode .btn-o {
-    border: 2px solid var(--ac) !important;
-    color: var(--ac2) !important;
-    background: transparent !important;
-    font-weight: 700;
+    background: var(--ac) !important;
+    color: #1A2F44 !important; /* نص كحلي داكن للوضوح */
+    border: 1px solid var(--ac-gold) !important;
+    font-weight: 800 !important;
+}
+
+/* ── 7. الهيدر ── */
+body.light-mode header {
+    background: rgba(244, 247, 248, 0.95) !important;
+    border-bottom: 1px solid rgba(87, 188, 165, 0.2) !important;
 }
 
 /* ── BACKGROUNDS ── */
