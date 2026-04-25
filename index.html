@@ -9,6 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+/* إلغاء الخط تحت اللينكات في الموقع كله */
+a {
+    text-decoration: none !important;
+}
+
+/* التأكد إن اللينكات مبيظهرش تحتها خط حتى لما تدوس عليها أو تقف فوقها */
+a:hover, a:focus, a:active {
+    text-decoration: none !important;
+}
 /* ══════════════════════════════════════
   DARK MODE (default)
 ══════════════════════════════════════ */
@@ -38,113 +47,93 @@
 }
 
 /* ══════════════════════════════════════
-  LIGHT MODE
+    LIGHT MODE - النسخة فائقة الوضوح (Ultra Contrast)
 ══════════════════════════════════════ */
-body.light-mode{
-  --bg: #f8fafc;
-  --s1: #ffffff;
-  --s2: #f1f5f9;
-  
-  --ac: #006b44;           
-  --ac2: #004d30;
-  
-  --tx: #0a0f1c;           /* أسود غامق جدًا */
-  --mt: #f6faf6;           /* رمادي غامق جدًا */
-  
-  --br: rgba(15, 23, 42, 0.22);
-  --shadow-card: 0 12px 35px rgba(0,0,0,0.11);
-}
-
-/* حجم الخط العام في اللايت مود */
 body.light-mode {
-  font-size: 18px;
-  line-height: 1.9;
+    --bg: #ffffff;
+    --s1: #ffffff;
+    --s2: #f1f5f9;
+    --ac: #0052cc;           /* أزرق صريح وقوي */
+    --ac2: #003d99;
+    --tx: #000000;           /* أسود صريح للنصوص */
+    --mt: #000000;           /* أسود صريح للنصوص الثانوية أيضاً */
+    --br: rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* كل النصوص الثانوية */
-body.light-mode .ss,
-body.light-mode p,
+/* --- تعديل البراجرافات (النصوص الصغيرة) لتكون واضحة جداً --- */
+body.light-mode p, 
+body.light-mode .ss, 
+body.light-mode .proj-bd p, 
+body.light-mode .tst p, 
+body.light-mode .faq-a, 
+body.light-mode .ft-brand p,
 body.light-mode .srv p,
-body.light-mode .proj-bd p,
-body.light-mode .tst p,
-body.light-mode .faq-a,
-body.light-mode .hero p,
-body.light-mode .scroll-cue {
-  color: var(--mt);
-  font-size: 17.2px;
-  line-height: 1.85;
-}
-
-/* جعل الأرقام في Light Mode نفس الدارك مود بالظبط */
-body.light-mode .stat .n {
-  font-size: clamp(28px, 4.5vw, 52px) !important;
-  font-weight: 900 !important;
-  background: linear-gradient(135deg, #010831, rgb(12, 233, 233)) !important;   /* نفس التدرج الجميل في الدارك */
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* الكلام تحت الأرقام (مشروع منجز - رضا العملاء ...) */
+body.light-mode .ci-tx span,
 body.light-mode .stat .l {
-  color: #020305 !important;     /* أسود غامق واضح */
-  font-size: 15.5px !important;
-  font-weight: 700 !important;
-  margin-top: 8px !important;
+    color: #000000 !important;    /* أسود فاحم - أعلى درجة تباين ممكنة */
+    font-size: 20px !important;    /* تكبير الخط لدرجة ممتازة (20 بكسل) */
+    font-weight: 600 !important;   /* خط سميك (Semi-Bold) علشان يظهر بوضوح */
+    line-height: 1.6 !important;
+    opacity: 1 !important;         /* ممنوع أي نوع من الشفافية */
+    text-align: inherit;
 }
 
-
-/* ====================== باقي التحسينات ====================== */
-body.light-mode h3,
-body.light-mode .srv h3,
-body.light-mode .proj-bd h3,
-body.light-mode .tst-name,
-body.light-mode .lbl {
-  color: var(--tx);
-  font-size: 18.5px;
-  font-weight: 700;
+/* --- تعديل الهيرو (العنوان ووصفه) --- */
+body.light-mode .hero h1 {
+    color: #000000 !important;
+    font-weight: 900 !important;
 }
 
-/* زر "أعمالنا" و "عرض الكل" */
-body.light-mode #viewAllBtn,
-body.light-mode .btn-o,
-body.light-mode .nav-links a {
-  color: var(--tx);
-  font-size: 17px;
-  font-weight: 700;
+body.light-mode .hero p {
+    font-size: 24px !important;    /* وصف الهيرو كبير جداً */
+    color: #000000 !important;
+    font-weight: 700 !important;
+    max-width: 850px;
 }
 
-body.light-mode #viewAllBtn:hover,
-body.light-mode .btn-o:hover {
-  color: var(--ac);
-  background: rgba(0,107,68,0.09);
+/* --- الأرقام (Stats) بتدريج قوي وواضح --- */
+body.light-mode .stat .n {
+    background: linear-gradient(135deg, #0052cc 0%, #00a86b 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 60px !important; 
+    font-weight: 900 !important;
 }
 
-/* الكروت */
-body.light-mode .srv,
-body.light-mode .proj,
-body.light-mode .tst,
-body.light-mode .faq-item {
-  border-color: rgba(15,23,42,.20);
-  box-shadow: var(--shadow-card);
+/* --- العناوين (H3) في الخدمات والمشاريع --- */
+body.light-mode h3 {
+    color: #000000 !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    margin-bottom: 10px;
 }
 
-/* الـ Chip في الهيرو */
-body.light-mode .chip {
-  background: #006b44;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 800;
+/* --- تظبيط الهيدر (القائمة العلوية) --- */
+body.light-mode header .nav-links a {
+    color: #000000 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
 }
 
+/* --- تظبيط خلفية الهيرو لضمان القراءة --- */
+body.light-mode .hero-bg-img::after {
+    background: rgba(255, 255, 255, 0.85) !important; /* طبقة بيضاء سميكة خلف الكلام */
+}
 
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--f);background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.7;transition:background .35s,color .35s}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:var(--ac);border-radius:2px}
-img{max-width:100%;display:block}
-a{text-decoration:none;color:inherit}
+/* --- الأزرار --- */
+body.light-mode .btn-p {
+    background: #000000 !important; /* زر أسود بمتن أبيض لقمة التباين */
+    color: #ffffff !important;
+    font-size: 18px !important;
+    padding: 15px 40px !important;
+}
+
+body.light-mode .btn-o {
+    border: 3px solid #000000 !important;
+    color: #000000 !important;
+    font-weight: 900;
+}
 
 /* ── BACKGROUNDS ── */
 .bg-mesh{
