@@ -404,19 +404,26 @@ body.light-mode .mobile-nav {
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
-  opacity: 0.09;                    /* خفضناها أكتر */
+  opacity: 0.09;                    /* Dark Mode */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 93%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 93%);
+}
+
+/* تعديل خاص للـ Light Mode فقط */
+body.light-mode .hero-building-img {
+  opacity: 0.22;                    /* أعلى شوية عشان الخلفية فاتحة */
   mask-image: linear-gradient(
     to bottom, 
     #000 0%, 
-    #000 78%, 
-    rgba(0,0,0,0.25) 88%, 
+    #000 75%, 
+    rgba(0,0,0,0.4) 85%, 
     transparent 94%
   );
   -webkit-mask-image: linear-gradient(
     to bottom, 
     #000 0%, 
-    #000 78%, 
-    rgba(0,0,0,0.25) 88%, 
+    #000 75%, 
+    rgba(0,0,0,0.4) 85%, 
     transparent 94%
   );
 }
