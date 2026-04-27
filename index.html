@@ -404,12 +404,22 @@ body.light-mode .mobile-nav {
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
-  opacity: 0.22;
-  /* smooth overlay from image into dark bg */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  opacity: 0.18;           /* خفضنا الـ opacity شوية */
+  mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,0.65) 0%, 
+    rgba(0,0,0,0.45) 35%, 
+    rgba(0,0,0,0.25) 65%, 
+    transparent 92%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,0.65) 0%, 
+    rgba(0,0,0,0.45) 35%, 
+    rgba(0,0,0,0.25) 65%, 
+    transparent 92%
+  );
 }
-
 body.light-mode .hero-building-img {
   opacity: 0.15;
 }
